@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title>CURD Example</title>
+    <style>
+        
+    </style>
+  </head>
+  <body>
+    <div>
+        <!-- create todo -->
+        <form method="POST" class="create">
+            {{ createform.hidden_tag() }}
+            <fieldset>
+                <legend>Create TODO</legend>
+                {{ createform.title.label }}
+                {{ createform.title }}<br>
+                {{ createform.tododesc.label }}
+                {{ createform.tododesc }}
+                {{ createform.create }}
+            </fieldset>
+        </form>
+
+        <!-- update -->
+
+        <form  method="POST">
+            {{ updateform.hidden_tag() }}
+            <fieldset>
+                <legend>Update Description</legend>
+                <h3>Enter TODO ID to update</h3>
+                {{ updateform.key.label }}
+                {{ updateform.key }}
+                <h3>Enter new Description</h3>
+                {{ updateform.tododesc.label }}
+                {{ updateform.tododesc }}
+                {{ updateform.update }}
+            </fieldset>
+        </form>
+
+        <!-- delete -->
+
+        <form method="POST">
+            {{ deleteform.hidden_tag() }}
+            <fieldset>
+                <legend>Delete TODO</legend>
+                <h3>Remember the ID?</h3>
+                {{ deleteform.key.label }}
+                {{ deleteform.key }}
+                <h3>Or Enter Title to delete</h3>
+                {{ deleteform.title.label }}
+                {{ deleteform.title }}
+                {{ deleteform.delete }}
+            </fieldset>
+        </form>
+
+        <!-- reset all the entered todo -->
+
+        <form method="POST">
+            {{ reset.hidden_tag() }}
+            <b>Reset All Data: </b> {{ reset.reset }}
+        </form>
+    </div>
+    <br>
+    <br>
+    <h3>Tasks List:</h3><br><br>
+    {% for i in data %}
+        ID = {{ i["id"] }} <br>
+        Title = {{ i["title"] }}<br>
+        Short Description = {{ i["tododesc"] }} <br>
+    {% endfor %}
+  </body>
+</html>
